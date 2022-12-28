@@ -3,7 +3,8 @@
 ### Author: Matthew Gebhart and Jason Christopher (Pair Programmed)
 
 ### Links and Resources
-NA 
+![Version_1 whiteboard](assets%2FVersion_1_wb.png)
+whiteboard of the tasks
 
 ### Setup
 uses Python3.11 .venv virtual environment
