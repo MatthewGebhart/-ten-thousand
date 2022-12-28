@@ -1,24 +1,3 @@
-# from random import randint
-# from collections import Counter
-#
-# sample_roll = ()
-#
-# class GameLogic:
-#     pass
-#     def roll_dice(num_dice):
-#         return tuple(randint(1,6) for _ in range(0,num_dice))
-#         # or
-#         # return tuple(sample(range(1, 6 + 1), num_dice))
-#
-#     @staticmethod
-#     def calculate_score(roll_tuple):
-#         counted_dice = Counter(roll_tuple).most_common()
-#         if counted_dice[0][1]) >= 3:
-#             counted_dice[0][0]*100
-#
-#
-#         [dice for dice in counted_dice if 5 in dice]
-
 from random import randint
 from collections import Counter
 
@@ -40,7 +19,6 @@ class GameLogic:
         param: a tuple of integers that represent a dice roll.
         :return: an integer representing the roll’s score according to rules of game.
         """
-
         total_score = 0
 
         counted_dice = Counter(roll_tuple).most_common()
@@ -49,56 +27,82 @@ class GameLogic:
         if not counted_dice:
             return total_score
 
-        # 3, 4, 5, and 6 of a kind
+        # 3, 4, 5, and 6 of a kind (refactored)
         if (counted_dice[0][1]) >= 3:
+            if counted_dice[0][0] != 1:
+                total_score += counted_dice[0][0] * 100 * (counted_dice[0][1] - 2)
+                if counted_dice[0][1] == 6:
+                    return total_score
+                counted_dice = counted_dice[1:]
+            else:
+                total_score += 1000 * (counted_dice[0][1] - 2)
+                if counted_dice[0][1] == 6:
+                    return total_score
+                counted_dice = counted_dice[1:]
+
+        # # 3, 4, 5, and 6 of a kind (long version)
+        # if (counted_dice[0][1]) >= 3:
+        #     if counted_dice[0][1] == 3:
+        #         if counted_dice[0][0] != 1:
+        #             total_score += counted_dice[0][0] * 100
+        #             print(counted_dice[0][0] * 100)
+        #             counted_dice = counted_dice[1:]
+        #         else:
+        #             total_score += 1000
+        #             print(total_score)
+        #             counted_dice = counted_dice[1:]
+        #     elif counted_dice[0][1] == 4:
+        #         if counted_dice[0][0] != 1:
+        #             total_score += counted_dice[0][0] * 200
+        #             print(counted_dice[0][0] * 200)
+        #             counted_dice = counted_dice[1:]
+        #         else:
+        #             total_score += 2000
+        #             print(total_score)
+        #             counted_dice = counted_dice[1:]
+        #     elif counted_dice[0][1] == 5:
+        #         if counted_dice[0][0] != 1:
+        #             total_score += counted_dice[0][0] * 300
+        #             print(counted_dice[0][0] * 300)
+        #             counted_dice = counted_dice[1:]
+        #         else:
+        #             total_score += 3000
+        #             print(total_score)
+        #             counted_dice = counted_dice[1:]
+        #     elif counted_dice[0][1] == 6:
+        #         if counted_dice[0][0] != 1:
+        #             total_score += counted_dice[0][0] * 400
+        #             print(counted_dice[0][0] * 400)
+        #             return total_score
+        #         else:
+        #             total_score += 4000
+        #             print(total_score)
+        #             return total_score
+        #
+        #             # 3, 4, 5, and 6 of a kind
+        #             if (counted_dice[0][1]) >= 3:
+        #                 if counted_dice[0][0] != 1:
+        #                     total_score += counted_dice[0][0] * 100 * (counted_dice[0][1] - 2)
+        #                     if counted_dice[0][1] == 6:
+        #                         return total_score
+        #                     counted_dice = counted_dice[1:]
+        #                 else:
+        #                     total_score += 1000 * (counted_dice[0][1] - 2)
+        #                     if counted_dice[0][1] == 6:
+        #                         return total_score
+        #                     counted_dice = counted_dice[1:]
+
+        # Two 3 of a kinds
+        if len(counted_dice) == 1:
             if counted_dice[0][1] == 3:
                 if counted_dice[0][0] != 1:
-                    total_score += counted_dice[0][0] * 100
                     print(counted_dice[0][0] * 100)
-                    counted_dice = counted_dice[1:]
+                    total_score += counted_dice[0][0] * 100
+                    return total_score
                 else:
                     total_score += 1000
                     print(total_score)
-                    counted_dice = counted_dice[1:]
-            elif counted_dice[0][1] == 4:
-                if counted_dice[0][0] != 1:
-                    total_score += counted_dice[0][0] * 200
-                    print(counted_dice[0][0] * 200)
-                    counted_dice = counted_dice[1:]
-                else:
-                    total_score += 2000
-                    print(total_score)
-                    counted_dice = counted_dice[1:]
-            elif counted_dice[0][1] == 5:
-                if counted_dice[0][0] != 1:
-                    total_score += counted_dice[0][0] * 300
-                    print(counted_dice[0][0] * 300)
-                    counted_dice = counted_dice[1:]
-                else:
-                    total_score += 3000
-                    print(total_score)
-                    counted_dice = counted_dice[1:]
-            elif counted_dice[0][1] == 6:
-                if counted_dice[0][0] != 1:
-                    total_score += counted_dice[0][0] * 400
-                    print(counted_dice[0][0] * 400)
                     return total_score
-                else:
-                    total_score += 4000
-                    print(total_score)
-                    return total_score
-
-            # Two 3 of a kinds
-            if len(counted_dice) == 1:
-                if counted_dice[0][1] == 3:
-                    if counted_dice[0][0] != 1:
-                        print(counted_dice[0][0] * 100)
-                        total_score += counted_dice[0][0] * 100
-                        return total_score
-                    else:
-                        total_score += 1000
-                        print(total_score)
-                        return total_score
         # Straight
         if len(counted_dice) == 6:
             if counted_dice[0][1] == 1:
