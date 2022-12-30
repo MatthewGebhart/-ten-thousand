@@ -23,7 +23,6 @@ class GameLogic:
         total_score = 0
         counted_dice = Counter(roll_tuple).most_common()
 
-
         if not counted_dice:
             return total_score
 
@@ -62,3 +61,24 @@ class GameLogic:
 
 
         return total_score
+
+    @staticmethod
+    def validate_keepers(nums, keep):
+        nums = list(nums)
+        keep = list(keep)
+        if not keep:
+            return False
+        for dice in keep:
+            is_there = nums.count(dice)
+            if is_there > 0:
+                nums.remove(dice)
+            else:
+                return False
+        return True
+
+
+# ex1 = [1, 1, 2, 2, 3, 3]
+# ex2 = [1, 1, 1, 6, 6, 6]
+# ex3 = [1, 1, 1, 3, 4, 6]
+
+
