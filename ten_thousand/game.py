@@ -20,7 +20,8 @@ def intro():
 def default_roller(num):
     return GameLogic.roll_dice(num)
 
-def play_dice(roller=default_roller):
+
+def play(roller=default_roller):
     total_score = 0
     round_number = 1
     current_dice = []
@@ -97,4 +98,4 @@ if __name__ == "__main__":
         return rolls.pop(0) if rolls else default_roller(num)
 
     intro()
-    play_dice(mock_roller)
+    play(mock_roller)

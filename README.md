@@ -1,6 +1,8 @@
-# LAB - Class 08
-## Project: Ten Thousand - version 1 + 2 + 3
-### Author: Matthew Gebhart and Jason Christopher (Pair Programmed)
+# LAB - Class 43
+## Project: Ten Thousand - version 1 + 2 + 3 + 4
+### Author: Matthew Gebhart and Jason Christopher (Pair Programmed) version 4 Matthew Gebhart
+
+### Version 4 adding bots.py with a BaseBot class and various custom bot classes
 
 ### Links and Resources
 ![Version_1 whiteboard](assets%2FVersion_1_wb.png)
